@@ -77,9 +77,9 @@ WSGI_APPLICATION = 'booktime.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': '',
+        'NAME': 'booktime',
+        'USER': 'booktime',
+        'PASSWORD': 'test123',
         'HOST': 'localhost',
         'PORT': '5432',
 
@@ -180,3 +180,4 @@ LOGGING = {
         },
     },
 }
+AUTH_USER_MODEL = "main.User"

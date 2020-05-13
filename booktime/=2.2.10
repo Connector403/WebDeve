@@ -1,0 +1,13 @@
+Collecting django
+  Downloading Django-3.0.6-py3-none-any.whl (7.5 MB)
+Collecting sqlparse>=0.2.2
+  Downloading sqlparse-0.3.1-py2.py3-none-any.whl (40 kB)
+Collecting asgiref~=3.2
+  Downloading asgiref-3.2.7-py2.py3-none-any.whl (19 kB)
+Requirement already satisfied, skipping upgrade: pytz in /home/Hafiz/Desktop/CS50/WebDeve/venv/lib/python3.6/site-packages (from django) (2020.1)
+Installing collected packages: sqlparse, asgiref, django
+  Attempting uninstall: django
+    Found existing installation: Django 2.1
+    Uninstalling Django-2.1:
+      Successfully uninstalled Django-2.1
+Successfully installed asgiref-3.2.7 django-3.0.6 sqlparse-0.3.1

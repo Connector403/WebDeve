@@ -1,40 +1,43 @@
 {% extends "base.html" %}
 {% block content %}
   <h1>products</h1>
-  <table class="table">
-    <tr>
-      <th>Name</th>
-      <td>{{ object.name }}</td>
-    </tr>
-    <tr>
-      <th>Cover images</th>
-      <td>
-        {% for image in object.productimage_set.all %}
-          <img src="{{ image.thumbnail.url }}" alt="cover"/>
-        {% endfor %}
-      </td>
-    </tr>
-    <tr>
-      <th>Price</th>
-      <td>{{ object.price }}</td>
-    </tr>
-    <tr>
-      <th>Description</th>
-      <td>{{ object.description|linebreaks }}</td>
-    </tr>
-    <tr>
-      <th>Tags</th>
-       <td>{{ object.tags.all|join:","|default:"No tags available" }}</td>
-    </tr>
-    <tr>
-      <th>In stock</th>
-      <td>{{ object.in_stock|yesno|capfirst }}</td>
-    </tr>
-    <tr>
-      <th>Updated</th>
-      <td>{{ object.date_updated|date:"F Y" }}</td>
-    </tr>
-  </table>
-   <a href="{% url "add_to_basket" %}?product_id={{ object.id }}">
-Add to basket</a>
+  {% for product in page_obj %}
+    <p>{{ product.name }}</p>
+    <p>
+      <a href="{% url "product" product.slug %}">See it here</a>
+    </p>
+    {% if not forloop.last %}
+      <hr>
+    {% endif %}
+  {% endfor %}
+  <nav>
+    <ul class="pagination">
+      {% if page_obj.has_previous %}
+        <li class="page-item">
+          <a
+            class="page-link"
+            href="?page={{page_obj.previous_page_number}}">Previous</a>
+        </li>
+      {% else %}
+        <li class="page-item disabled">
+          <a class="page-link" href="#">Previous</a>
+        </li>
+      {% endif %}
+      {% for pagenum in page_obj.paginator.page_range %}
+       <li
+          class="page-item{% if page_obj.number == pagenum %}active{% endif %}">
+           <a class="page-link" href="?page={{pagenum}}">{{pagenum}}</a>
+        </li>
+      {% endfor %}
+      {% if page_obj.has_next %}
+        <li class="page-item">
+           <a class="page-link" href="?page={{page_obj.next_page_number}}">Next</a>
+        </li>
+      {% else %}
+        <li class="page-item disabled">
+          <a class="page-link" href="#">Next</a>
+        </li>
+      {% endif %}
+    </ul>
+  </nav>
 {% endblock content %}
