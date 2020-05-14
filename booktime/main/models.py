@@ -3,6 +3,7 @@ from django.contrib.auth.models import (
     AbstractUser,
     BaseUserManager,
 )
+from django import forms
 
 
 class ProductTagManager(models.Manager):
@@ -93,3 +94,13 @@ class User(AbstractUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
     objects = UserManager()
+
+
+class Lead(models.Model):
+    name = models.CharField(max_length=32)
+
+
+class LeadForm(forms.ModelForm):
+    class Meta:
+        model = Lead
+        fields = ('name', )
