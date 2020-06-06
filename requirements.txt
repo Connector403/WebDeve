@@ -1,4 +1,4 @@
-django==2.1
+django==2.2.13
 pillow==7.1.2
 psycopg2-binary==2.8.5
 psycopg2==2.8.5
